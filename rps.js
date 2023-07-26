@@ -1,5 +1,3 @@
-
-
 function getComputerChoice() {
  let arr = ["rock","paper", "scissors"];
  const randomIndex = Math.floor(Math.random() * arr.length);
@@ -23,13 +21,12 @@ function PlayRound(playerSelection, computerSelection) {
 
   function PlayGame() {
     const rounds = 5;
-    for(let i = 0; i<rounds; i++) {
+    for (let i = 0; i < rounds; i++) {
         const computerSelection = getComputerChoice();
         const playerSelection = prompt("Enter your choice:");
         const result = PlayRound(playerSelection, computerSelection);
         console.log(result);
     }
-  }
+}
 
-
-PlayGame();
+document.getElementById("playGame").addEventListener("click", PlayGame);
