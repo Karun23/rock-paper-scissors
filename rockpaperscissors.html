@@ -3,9 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <title>Fortnite</title>
-  <script src="rps.js"></script>
+  <script src="rps.js" defer></script>
+  <link rel="stylesheet" href="styles.css" type="text/css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Mukta:wght@600&family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>This is my rock paper scissors game that i created using git, javascript, html, and css.</h1>
+  <h1>Rock  Paper  Scissors</h1>
+  <div class="container">
+    <div class="Score">
+      <div class="playerScore">0</div>
+      <div> - </div>
+      <div class="computerScore">0</div>
+    </div>
+    <div class="results">
+      <p class="outputMessage"></p>
+    </div>
+    <div class="selections">
+      <button class="btn" data-choice="rock"><img src="noun-rock.png"></button>
+      <button class="btn" data-choice="paper"><img src="noun-paper.png"></button>
+      <button class="btn" data-choice="scissors"><img src="noun-scissors.png"></button>
+    </div>
+  </div>
 </body>
 </html>

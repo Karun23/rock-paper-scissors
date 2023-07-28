@@ -1,35 +1,57 @@
+const btns = document.querySelectorAll(".btn");
+const outputMessage = document.querySelector(".outputMessage");
+const playerScoreElement = document.querySelector(".playerScore");
+const computerScoreElement = document.querySelector(".computerScore");
+
+let playerScore = 0;
+let computerScore = 0;
+
 
 
 function getComputerChoice() {
- let arr = ["rock","paper", "scissors"];
- const randomIndex = Math.floor(Math.random() * arr.length);
- const randomElement = arr[randomIndex];
- return randomElement;
-
+  let arr = ["rock", "paper", "scissors"];
+  const randomIndex = Math.floor(Math.random() * arr.length);
+  const randomElement = arr[randomIndex];
+  return randomElement;
 }
 
-function PlayRound(playerSelection, computerSelection) {
-    if (playerSelection === computerSelection) {
-      return "It's a tie! " + "computer entered: " + computerSelection;
-    } else if (playerSelection === "rock" && computerSelection === "scissors") {
-      return "Player won! " + "computer entered: " + computerSelection;
-    } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        return "Player won! " + "computer entered: " + computerSelection;
-      } else {
-      return "Computer won! " + "computer entered: " + computerSelection;
-    }
+function playRound(playerSelection, computerSelection) {
+  while((playerScore < 5 && computerScore < 5)) {
+  if (playerSelection === computerSelection) {
+    return "It's a tie! " + "Computer chose: " + computerSelection;
+  } else if (
+    (playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "scissors" && computerSelection === "paper") ||
+    (playerSelection === "paper" && computerSelection === "rock")
+  ) {
+    playerScore++;
+    playerScoreElement.textContent = "Player: " + playerScore;
+    return "Player won! " + "Computer chose: " + computerSelection;
+
+  } else {
+    computerScore++;
+    computerScoreElement.textContent = "Computer: " + computerScore;
+    return "Computer won! " + "Computer chose: " + computerSelection;
   }
+}
 
+if(playerScore === 5) {
+  return "Player WINS!";
+} else {
+  return "Computer WINS";
+  
+}
+}
 
-  function PlayGame() {
-    const rounds = 5;
-    for(let i = 0; i<rounds; i++) {
-        const computerSelection = getComputerChoice();
-        const playerSelection = prompt("Enter your choice:");
-        const result = PlayRound(playerSelection, computerSelection);
-        console.log(result);
-    }
-  }
+function playGame(playerChoice) {
+  const computerSelection = getComputerChoice();
+  const result = playRound(playerChoice, computerSelection);
+  outputMessage.innerText = result;
+}
 
-
-PlayGame();
+btns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const playerChoice = btn.dataset.choice;
+    playGame(playerChoice);
+  });
+});
